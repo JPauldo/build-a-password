@@ -1,6 +1,6 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-var charArr = [];
+var charsetArr = [];
 
 // Verifies which character sets the user wants in their password.
 function charCheck() {
@@ -8,30 +8,26 @@ function charCheck() {
   
   // Checks if the user wants uppercase letters included.
   if(window.confirm("Would you like uppercase letters in you?")) {
-    charArr.push("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-    console.log(charArr);
+    charsetArr.push("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
     choice = true;
   }
   // Checks if the user wants lowercase ones included.
   if(window.confirm("What about lowercase ones?")) {
-    charArr.push("abcdefghijklmnopqrstuvwxyz");
-    console.log(charArr);
+    charsetArr.push("abcdefghijklmnopqrstuvwxyz");
     if(!choice) {
       choice = true;
     }
   }
   // Checks if the user wants numbers included.
   if(window.confirm("Numbers, maybe?")) {
-    charArr.push("0123456789");
-    console.log(charArr);
+    charsetArr.push("0123456789");
     if(!choice) {
       choice = true;
     }
   }
   // Checks if the user wants special characters included.
   if(window.confirm("Special Characters?")) {
-    charArr.push("!@#$%^&*");
-    console.log(charArr);
+    charsetArr.push("~?!@#$%^&+-*=");
     if(!choice) {
       choice = true;
     }
@@ -39,7 +35,6 @@ function charCheck() {
   
   // Checks to see if the user picked at least one of the previous character sets.
   if (choice) {
-    console.log(charArr);
   } else {
     window.alert("We got a real funny guy here! Try picking one the provided options, wise guy.");
     charCheck();
@@ -64,13 +59,12 @@ function checkIfInRange(length) {
 
 // Checks to see if the password generated thus far has the desired charsets. If not, it adds the missing ones.
 function charsetValidator(code) {
-  charArr.forEach(element => {
+  charsetArr.forEach(element => {
     if(![...code].some(char => [...element].includes(char))) {
-      console.log(code);
       code += element.charAt(Math.floor(Math.random() * element.length));
-      console.log(code);
     }
   });
+  
   return code;
 }
 
@@ -91,11 +85,9 @@ function generatePassword() {
   }
 
   for(var i = 0; i < charLength; i++) {
-    // Generates and stores a random index for the charArr array.
-    if(charArr.length > 1 && i == charLength-(charArr.length-1)) {
-      console.log(passcode);
+    // Generates and stores a random index for the charsetArr array.
+    if(charsetArr.length > 1 && i == charLength-(charsetArr.length-1)) {
       passcode = charsetValidator(passcode);
-      console.log(passcode);
 
       // Checks to see if the charsetValidator function completed the passcode. If not, it continues to build it.
       if(passcode.length === charLength) {
@@ -105,12 +97,11 @@ function generatePassword() {
         continue;
       }
     }
-    var arrIndex = Math.floor(Math.random() * charArr.length);
-    console.log(arrIndex);
+    // Picks a random charset and stores their index.
+    var charsetIndex = Math.floor(Math.random() * charsetArr.length);
     
-    // Uses the arrIndex variable to pick a random character set.
-    var charGroup = charArr[arrIndex];
-    console.log(charGroup);
+    // Uses the charsetIndex variable to pick a random character set.
+    var charGroup = charsetArr[charsetIndex];
     
     // Picks a random character from the character set to add to the password.
     passcode += charGroup.charAt(Math.floor(Math.random() * charGroup.length));
