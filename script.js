@@ -9,13 +9,13 @@ function charCheck() {
   // Checks if the user wants uppercase letters included.
   if(window.confirm("Would you like uppercase letters in you?")) {
     charArr.push("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-    console.log(charRange);
+    console.log(charArr);
     choice = true;
   }
   // Checks if the user wants lowercase ones included.
   if(window.confirm("What about lowercase ones?")) {
     charArr.push("abcdefghijklmnopqrstuvwxyz");
-    console.log(charRange);
+    console.log(charArr);
     if(!choice) {
       choice = true;
     }
@@ -23,7 +23,7 @@ function charCheck() {
   // Checks if the user wants numbers included.
   if(window.confirm("Numbers, maybe?")) {
     charArr.push("0123456789");
-    console.log(charRange);
+    console.log(charArr);
     if(!choice) {
       choice = true;
     }
@@ -31,7 +31,7 @@ function charCheck() {
   // Checks if the user wants special characters included.
   if(window.confirm("Special Characters?")) {
     charArr.push("!@#$%^&*");
-    console.log(charRange);
+    console.log(charArr);
     if(!choice) {
       choice = true;
     }
@@ -39,7 +39,7 @@ function charCheck() {
   
   // Checks to see if the user picked at least one of the previous character sets.
   if (choice) {
-    console.log(charRange);
+    console.log(charArr);
   } else {
     window.alert("We got a real funny guy here! Try picking one the provided options, wise guy.");
     charCheck();
@@ -71,7 +71,7 @@ function generatePassword() {
   
   // Checks to see if the value provide is a number.
   if(Number.isFinite(charLength)) {
-    charArr = checkIfInRange(charLength);
+    checkIfInRange(charLength);
   }
   else {
     window.alert("Try using a number next time, forehead.");
