@@ -78,6 +78,19 @@ function generatePassword() {
     generatePassword();
   }
 
+  for(var i = 0; i < charLength; i++) {
+    // Generates and stores a random index for the charArr array.
+    var arrIndex = Math.floor(Math.random() * charArr.length);
+    console.log(arrIndex);
+    
+    // Uses the arrIndex variable to pick a random character set.
+    var charGroup = charArr[arrIndex];
+    console.log(charGroup);
+    
+    // Picks a random character from the character set to add to the password.
+    passcode += charGroup.charAt(Math.floor(Math.random() * charGroup.length));
+  }
+
   return passcode;
 }
 
