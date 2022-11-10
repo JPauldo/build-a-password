@@ -47,6 +47,23 @@ function charCheck() {
   }
 }
 
+// Checks the length provided is a valid.
+function checkIfInRange(length) {
+  // Passwords must be at least 8 characters long.
+  if (length < 8) {
+    window.alert("Maybe make it a bit longer than 7.");
+    generatePassword();
+  } 
+  // Passwords must be under 129 characters.
+  else if (length >= 128) {
+    window.alert("Has to be under 129, my dude.");
+    generatePassword();
+  } else {
+    var arrOfChar = charCheck()
+    return arrOfChar;
+  }
+}
+
 // Builds a password.
 function generatePassword() {
   var passcode = "";
