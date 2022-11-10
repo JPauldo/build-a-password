@@ -62,6 +62,18 @@ function checkIfInRange(length) {
   }
 }
 
+// Checks to see if the password generated thus far has the desired charsets. If not, it adds the missing ones.
+function charsetValidator(code) {
+  charArr.forEach(element => {
+    if(![...code].some(char => [...element].includes(char))) {
+      console.log(code);
+      code += element.charAt(Math.floor(Math.random() * element.length));
+      console.log(code);
+    }
+  });
+  return code;
+}
+
 // Builds a password.
 function generatePassword() {
   var passcode = "";
@@ -80,6 +92,19 @@ function generatePassword() {
 
   for(var i = 0; i < charLength; i++) {
     // Generates and stores a random index for the charArr array.
+    if(charArr.length > 1 && i == charLength-(charArr.length-1)) {
+      console.log(passcode);
+      passcode = charsetValidator(passcode);
+      console.log(passcode);
+
+      // Checks to see if the charsetValidator function completed the passcode. If not, it continues to build it.
+      if(passcode.length === charLength) {
+        break;
+      }
+      else if(passcode.length > i) {
+        continue;
+      }
+    }
     var arrIndex = Math.floor(Math.random() * charArr.length);
     console.log(arrIndex);
     
