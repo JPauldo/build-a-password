@@ -5,6 +5,7 @@ var charsetArr = [];
 // Verifies which character sets the user wants in their password.
 function charCheck() {
   var choice = false;
+  charsetArr = [];
   
   // Checks if the user wants uppercase letters included.
   if(window.confirm("Would you like uppercase letters in you?")) {
@@ -49,7 +50,7 @@ function checkIfInRange(length) {
     generatePassword();
   } 
   // Passwords must be under 129 characters.
-  else if (length >= 128) {
+  else if (length > 128) {
     window.alert("Has to be under 129, my dude.");
     generatePassword();
   } else {
